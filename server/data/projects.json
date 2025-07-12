@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Job Tracking System",
+    "description": "A full-stack job tracking platform with role-based login, job posting, resume upload, and application status updates.",
+    "techStack": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "Stripe"
+    ],
+    "githubLink": "https://github.com/purushotham0113/applicant-tracking-system",
+    "liveLink": "https://ecommerce-demo.vercel.app",
+    "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800"
+  },
+  {
+    "id": 2,
+    "title": "News App",
+    "description": "A responsive React-based news app that fetches live headlines by category using a secure Node.js backend.",
+    "techStack": [
+      "React",
+      "Node.js",
+      "Express.js",
+      "OpenNews API"
+    ],
+    "githubLink": "https://github.com/purushotham0113/news_app",
+    "liveLink": "https://purushotham0113.github.io/news_app/",
+    "image": "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800"
+  },
+  {
+    "id": 3,
+    "title": "To DO List",
+    "description": "A simple to-do list web app built with HTML, CSS, and JavaScript for managing daily tasks.",
+    "techStack": [
+      "Java Script",
+      "HTML",
+      "CSS"
+    ],
+    "githubLink": "https://github.com/purushotham0113/to-do-list-app",
+    "liveLink": "https://purushotham0113.github.io/to-do-list-app/",
+    "image": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=800"
+  }
+]

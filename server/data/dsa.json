@@ -1,0 +1,46 @@
+{
+  "totalProblems": 350,
+  "platforms": [
+    {
+      "name": "LeetCode",
+      "solved": 260,
+      "total": 2500
+    },
+    {
+      "name": "Codeforces",
+      "solved": 70,
+      "total": 1000
+    },
+    {
+      "name": "HackerRank",
+      "solved": 20,
+      "total": 500
+    }
+  ],
+  "recentProblems": [
+    {
+      "id": 1,
+      "title": "Remove Duplicates from Sorted Array",
+      "difficulty": "Easy",
+      "platform": "LeetCode",
+      "topic": "Array, Two pointers",
+      "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/"
+    },
+    {
+      "id": 2,
+      "title": "Binary Tree Inorder Traversal",
+      "difficulty": "Medium",
+      "platform": "LeetCode",
+      "topic": "Tree, Stack",
+      "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+    },
+    {
+      "id": 3,
+      "title": "Maximum Subarray",
+      "difficulty": "Medium",
+      "platform": "LeetCode",
+      "topic": "Array, Dynamic Programming",
+      "link": "https://leetcode.com/problems/maximum-subarray/"
+    }
+  ]
+}
