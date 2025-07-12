@@ -22,7 +22,7 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
 
   const fetchSkills = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/skills');
+      const response = await fetch('https://my-portfolio-server-6all.onrender.com/api/skills');
       const data = await response.json();
       setSkills(data);
     } catch (error) {
@@ -31,8 +31,8 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
   };
 
   const categories = ['All', ...new Set(skills.map(skill => skill.category))];
-  const filteredSkills = selectedCategory === 'All' 
-    ? skills 
+  const filteredSkills = selectedCategory === 'All'
+    ? skills
     : skills.filter(skill => skill.category === selectedCategory);
 
   const categoryColors = {
@@ -53,9 +53,8 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
             Skills & Expertise
           </h2>
           <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -69,13 +68,12 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === category
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category
                   ? 'bg-blue-500 text-white'
                   : darkMode
-                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
             >
               {category}
             </button>
@@ -90,23 +88,20 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-6 rounded-lg shadow-lg ${
-                darkMode ? 'bg-gray-700' : 'bg-white'
-              } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
+              className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+                } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className={`text-lg font-semibold ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>
+                <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
                   {skill.name}
                 </h3>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  categoryColors[skill.category as keyof typeof categoryColors]
-                } text-white`}>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColors[skill.category as keyof typeof categoryColors]
+                  } text-white`}>
                   {skill.category}
                 </span>
               </div>
-              
+
               <div className="mb-2">
                 <div className="flex justify-between text-sm mb-1">
                   <span className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
@@ -116,9 +111,8 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
                     {skill.level}%
                   </span>
                 </div>
-                <div className={`w-full bg-gray-200 rounded-full h-2 ${
-                  darkMode ? 'bg-gray-600' : 'bg-gray-200'
-                }`}>
+                <div className={`w-full bg-gray-200 rounded-full h-2 ${darkMode ? 'bg-gray-600' : 'bg-gray-200'
+                  }`}>
                   <motion.div
                     className="bg-blue-500 h-2 rounded-full"
                     initial={{ width: 0 }}
