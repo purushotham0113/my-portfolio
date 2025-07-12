@@ -32,7 +32,7 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
 
   const fetchDSAData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/dsa');
+      const response = await fetch('https://my-portfolio-server-6all.onrender.com/api/dsa');
       const data = await response.json();
       setDsaData(data);
     } catch (error) {
@@ -77,9 +77,8 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
             Data Structures & Algorithms
           </h2>
           <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -93,15 +92,13 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className={`p-6 rounded-lg shadow-lg ${
-              darkMode ? 'bg-gray-700' : 'bg-white'
-            } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
+            className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+              } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
           >
             <div className="flex items-center justify-center mb-4">
               <Trophy className="text-yellow-500 mr-2" size={32} />
-              <h3 className={`text-2xl font-bold ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'
+                }`}>
                 {dsaData.totalProblems}
               </h3>
             </div>
@@ -114,15 +111,13 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className={`p-6 rounded-lg shadow-lg ${
-              darkMode ? 'bg-gray-700' : 'bg-white'
-            } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
+            className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+              } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
           >
             <div className="flex items-center justify-center mb-4">
               <Target className="text-blue-500 mr-2" size={32} />
-              <h3 className={`text-2xl font-bold ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'
+                }`}>
                 {dsaData.platforms.length}
               </h3>
             </div>
@@ -135,15 +130,13 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={`p-6 rounded-lg shadow-lg ${
-              darkMode ? 'bg-gray-700' : 'bg-white'
-            } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
+            className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+              } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} text-center`}
           >
             <div className="flex items-center justify-center mb-4">
               <Award className="text-green-500 mr-2" size={32} />
-              <h3 className={`text-2xl font-bold ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'
+                }`}>
                 85%
               </h3>
             </div>
@@ -161,19 +154,17 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-6 rounded-lg shadow-lg ${
-                darkMode ? 'bg-gray-700' : 'bg-white'
-              } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
+              className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+                } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className={`text-lg font-semibold ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>
+                <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
                   {platform.name}
                 </h3>
                 <div className={`w-4 h-4 rounded-full ${getPlatformColor(platform.name)}`}></div>
               </div>
-              
+
               <div className="mb-4">
                 <div className="flex justify-between text-sm mb-2">
                   <span className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
@@ -183,9 +174,8 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
                     {platform.solved}/{platform.total}
                   </span>
                 </div>
-                <div className={`w-full bg-gray-200 rounded-full h-2 ${
-                  darkMode ? 'bg-gray-600' : 'bg-gray-200'
-                }`}>
+                <div className={`w-full bg-gray-200 rounded-full h-2 ${darkMode ? 'bg-gray-600' : 'bg-gray-200'
+                  }`}>
                   <motion.div
                     className={`h-2 rounded-full ${getPlatformColor(platform.name)}`}
                     initial={{ width: 0 }}
@@ -196,9 +186,8 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
               </div>
 
               <div className="text-center">
-                <p className={`text-2xl font-bold ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>
+                <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
                   {platform.solved}
                 </p>
                 <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -215,12 +204,11 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h3 className={`text-2xl font-bold mb-8 text-center ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h3 className={`text-2xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
             Recent Problem Submissions
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dsaData.recentProblems.map((problem, index) => (
               <motion.div
@@ -228,25 +216,22 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`p-6 rounded-lg shadow-lg ${
-                  darkMode ? 'bg-gray-700' : 'bg-white'
-                } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} hover:shadow-xl transition-shadow`}
+                className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
+                  } border ${darkMode ? 'border-gray-600' : 'border-gray-200'} hover:shadow-xl transition-shadow`}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <h4 className={`text-lg font-semibold ${
-                    darkMode ? 'text-white' : 'text-gray-900'
-                  }`}>
+                  <h4 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'
+                    }`}>
                     {problem.title}
                   </h4>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    darkMode 
-                      ? 'bg-gray-600 text-gray-300' 
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode
+                      ? 'bg-gray-600 text-gray-300'
                       : getDifficultyColor(problem.difficulty)
-                  }`}>
+                    }`}>
                     {problem.difficulty}
                   </span>
                 </div>
-                
+
                 <div className="mb-4">
                   <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>
                     <strong>Platform:</strong> {problem.platform}
