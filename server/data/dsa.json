@@ -2,7 +2,7 @@
   "totalProblems": 350,
   "platforms": [
     {
-      "name": "LeetCod",
+      "name": "LeetCode",
       "solved": 260,
       "total": 2500
     },

@@ -117,8 +117,8 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                     <span
                       key={techIndex}
                       className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode
-                          ? 'bg-gray-700 text-gray-300'
-                          : techColors[tech as keyof typeof techColors] || 'bg-gray-100 text-gray-800'
+                        ? 'bg-gray-700 text-gray-300'
+                        : techColors[tech as keyof typeof techColors] || 'bg-gray-100 text-gray-800'
                         }`}
                     >
                       {tech}
@@ -132,8 +132,8 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${darkMode
-                        ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                   >
                     <Github size={16} />
