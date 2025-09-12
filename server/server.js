@@ -58,7 +58,7 @@ const initializeData = () => {
       description: "A full-stack e-commerce platform with user authentication, shopping cart, and payment integration.",
       techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
       githubLink: "https://github.com/purushotham0113/applicant-tracking-system",
-      liveLink: "",
+      liveLink: "https://applicant-tracking-system-client.onrender.com/",
       // image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800"
       image: './images/ATS.png'
     },
