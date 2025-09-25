@@ -2,16 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const compression = require('compression');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use('/images', express.static('images'));
-
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(compression()); // compress responses
 
-// Data file paths
+// Serve images folder
+app.use('/images', express.static('images'));
+
+// Data directory and file paths
 const dataDir = path.join(__dirname, 'data');
 const projectsFile = path.join(dataDir, 'projects.json');
 const skillsFile = path.join(dataDir, 'skills.json');
@@ -23,7 +27,7 @@ if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-// Helper function to read JSON file
+// ----------------- Helper functions -----------------
 const readJSONFile = (filePath, defaultData = []) => {
   try {
     if (fs.existsSync(filePath)) {
@@ -37,20 +41,27 @@ const readJSONFile = (filePath, defaultData = []) => {
   }
 };
 
-// Helper function to write JSON file
 const writeJSONFile = (filePath, data) => {
-  try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    return true;
-  } catch (error) {
-    console.error(`Error writing ${filePath}:`, error);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        console.error(`Error writing ${filePath}:`, err);
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  });
 };
 
-// Initialize data files with sample data
+// ----------------- In-memory cache -----------------
+let cachedProjects = [];
+let cachedSkills = [];
+let cachedDSA = {};
+let cachedContacts = [];
+
+// Initialize data files with sample data if missing
 const initializeData = () => {
-  // Projects data
   const projectsData = [
     {
       id: 1,
@@ -59,7 +70,6 @@ const initializeData = () => {
       techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
       githubLink: "https://github.com/purushotham0113/applicant-tracking-system",
       liveLink: "https://applicant-tracking-system-client.onrender.com/",
-      // image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800"
       image: './images/ATS.png'
     },
     {
@@ -82,7 +92,6 @@ const initializeData = () => {
     }
   ];
 
-  // Skills data
   const skillsData = [
     { id: 1, name: "JavaScript", category: "Frontend", level: 90 },
     { id: 2, name: "React", category: "Frontend", level: 85 },
@@ -94,10 +103,9 @@ const initializeData = () => {
     { id: 8, name: "TypeScript", category: "Frontend", level: 75 },
     { id: 9, name: "Git", category: "Tools", level: 85 },
     { id: 10, name: "Docker", category: "DevOps", level: 70 },
-    { id: 11, name: "Java", category: 'rogramming', level: '80' }
+    { id: 11, name: "Java", category: "Programming", level: 80 }
   ];
 
-  // DSA data
   const dsaData = {
     totalProblems: 450,
     platforms: [
@@ -133,50 +141,39 @@ const initializeData = () => {
     ]
   };
 
-  // Initialize files if they don't exist
-  if (!fs.existsSync(projectsFile)) {
-    writeJSONFile(projectsFile, projectsData);
-  }
-  if (!fs.existsSync(skillsFile)) {
-    writeJSONFile(skillsFile, skillsData);
-  }
-  if (!fs.existsSync(dsaFile)) {
-    writeJSONFile(dsaFile, dsaData);
-  }
-  if (!fs.existsSync(contactFile)) {
-    writeJSONFile(contactFile, []);
-  }
+  if (!fs.existsSync(projectsFile)) writeJSONFile(projectsFile, projectsData);
+  if (!fs.existsSync(skillsFile)) writeJSONFile(skillsFile, skillsData);
+  if (!fs.existsSync(dsaFile)) writeJSONFile(dsaFile, dsaData);
+  if (!fs.existsSync(contactFile)) writeJSONFile(contactFile, []);
 };
 
-// API Routes
+// Load cache from files
+const loadCache = () => {
+  cachedProjects = readJSONFile(projectsFile, []);
+  cachedSkills = readJSONFile(skillsFile, []);
+  cachedDSA = readJSONFile(dsaFile, {});
+  cachedContacts = readJSONFile(contactFile, []);
+};
+
+// ----------------- API Routes -----------------
 
 // Get all projects
-app.get('/api/projects', (req, res) => {
-  const projects = readJSONFile(projectsFile, []);
-  res.json(projects);
-});
+app.get('/api/projects', (req, res) => res.json(cachedProjects));
 
 // Get all skills
-app.get('/api/skills', (req, res) => {
-  const skills = readJSONFile(skillsFile, []);
-  res.json(skills);
-});
+app.get('/api/skills', (req, res) => res.json(cachedSkills));
 
 // Get DSA data
-app.get('/api/dsa', (req, res) => {
-  const dsa = readJSONFile(dsaFile, {});
-  res.json(dsa);
-});
+app.get('/api/dsa', (req, res) => res.json(cachedDSA));
 
 // Submit contact form
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
-  const contacts = readJSONFile(contactFile, []);
   const newContact = {
     id: Date.now(),
     name,
@@ -185,21 +182,25 @@ app.post('/api/contact', (req, res) => {
     timestamp: new Date().toISOString()
   };
 
-  contacts.push(newContact);
+  cachedContacts.push(newContact);
 
-  if (writeJSONFile(contactFile, contacts)) {
+  try {
+    await writeJSONFile(contactFile, cachedContacts);
     res.json({ message: 'Contact form submitted successfully' });
-  } else {
+  } catch {
     res.status(500).json({ error: 'Failed to save contact form' });
   }
 });
 
-// Initialize data
-initializeData();
+// Health check
 app.get('/health', (req, res) => {
-  res.send("server running")
-})
-// Start server
+  res.send("server running");
+});
+
+// ----------------- Start Server -----------------
+initializeData();
+loadCache();
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

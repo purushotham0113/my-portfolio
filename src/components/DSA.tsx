@@ -225,8 +225,8 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
                     {problem.title}
                   </h4>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode
-                      ? 'bg-gray-600 text-gray-300'
-                      : getDifficultyColor(problem.difficulty)
+                    ? 'bg-gray-600 text-gray-300'
+                    : getDifficultyColor(problem.difficulty)
                     }`}>
                     {problem.difficulty}
                   </span>
