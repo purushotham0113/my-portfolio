@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+
 interface Skill {
   id: number;
   name: string;
@@ -13,6 +14,9 @@ interface SkillsProps {
 }
 
 const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
+  // const BASE_URL = 'http://localhost:5000/api'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
+
   const [skills, setSkills] = useState<Skill[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -22,9 +26,10 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
 
   const fetchSkills = async () => {
     try {
-      const response = await fetch('https://my-portfolio-server-6all.onrender.com/api/skills');
+      const response = await fetch(`${BASE_URL}/get/skills`);
       const data = await response.json();
-      setSkills(data);
+
+      setSkills(data.skills);
     } catch (error) {
       console.error('Error fetching skills:', error);
     }
@@ -69,10 +74,10 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category
-                  ? 'bg-blue-500 text-white'
-                  : darkMode
-                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-blue-500 text-white'
+                : darkMode
+                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
             >
               {category}
@@ -84,13 +89,14 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSkills.map((skill, index) => (
             <motion.div
-              key={skill.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'
                 } border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
             >
+
               <div className="flex items-center justify-between mb-4">
                 <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'
                   }`}>

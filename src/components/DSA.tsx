@@ -24,6 +24,8 @@ interface DSAProps {
 }
 
 const DSA: React.FC<DSAProps> = ({ darkMode }) => {
+  // const BASE_URL = 'http://localhost:5000/api'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
   const [dsaData, setDsaData] = useState<DSAData | null>(null);
 
   useEffect(() => {
@@ -32,9 +34,9 @@ const DSA: React.FC<DSAProps> = ({ darkMode }) => {
 
   const fetchDSAData = async () => {
     try {
-      const response = await fetch('https://my-portfolio-server-6all.onrender.com/api/dsa');
+      const response = await fetch(`${BASE_URL}/get/dsa`);
       const data = await response.json();
-      setDsaData(data);
+      setDsaData(data.dsaData);
     } catch (error) {
       console.error('Error fetching DSA data:', error);
     }

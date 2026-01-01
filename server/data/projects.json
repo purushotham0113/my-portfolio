@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "title": "Job Tracking System",
     "description": "A full-stack job tracking platform with role-based login, job posting, resume upload, and application status updates.",
     "techStack": [
@@ -15,7 +14,6 @@
     "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800"
   },
   {
-    "id": 2,
     "title": "News App",
     "description": "A responsive React-based news app that fetches live headlines by category using a secure Node.js backend.",
     "techStack": [
@@ -29,7 +27,6 @@
     "image": "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800"
   },
   {
-    "id": 3,
     "title": "To DO List",
     "description": "A simple to-do list web app built with HTML, CSS, and JavaScript for managing daily tasks.",
     "techStack": [

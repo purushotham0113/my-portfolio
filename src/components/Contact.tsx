@@ -7,10 +7,15 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ darkMode }) => {
+
+  // const BASE_URL = 'http://localhost:5000/api'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
+    phone: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -27,7 +32,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(`${BASE_URL}/add/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +42,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', phone: '' });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -169,6 +174,27 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                     id="name"
                     name="name"
                     value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent ${darkMode
+                      ? 'bg-gray-700 border-gray-600 text-white'
+                      : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className={`block text-sm font-medium mb-2 ${darkMode ? 'text-white' : 'text-gray-900'
+                      }`}
+                  >
+                    Phone
+                  </label>
+                  <input
+                    type="number"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
                     required
                     className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent ${darkMode

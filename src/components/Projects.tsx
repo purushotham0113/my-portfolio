@@ -18,6 +18,8 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
   const [projects, setProjects] = useState<Project[]>([]);
+  // const BASE_URL = 'http://localhost:5000/api'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
 
   useEffect(() => {
     fetchProjects();
@@ -25,9 +27,9 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('https://my-portfolio-server-6all.onrender.com/api/projects');
+      const response = await fetch(`${BASE_URL}/get/projects`);
       const data = await response.json();
-      setProjects(data);
+      setProjects(data.projects);
     } catch (error) {
       console.error('Error fetching projects:', error);
     }
@@ -67,7 +69,7 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
-              key={project.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
