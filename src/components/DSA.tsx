@@ -25,7 +25,7 @@ interface DSAProps {
 
 const DSA: React.FC<DSAProps> = ({ darkMode }) => {
   // const BASE_URL = 'http://localhost:5000/api'
-  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com/api'
   const [dsaData, setDsaData] = useState<DSAData | null>(null);
 
   useEffect(() => {

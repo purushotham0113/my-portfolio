@@ -9,7 +9,7 @@ interface ContactProps {
 const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
   // const BASE_URL = 'http://localhost:5000/api'
-  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com'
+  const BASE_URL = 'https://my-portfolio-server-6all.onrender.com/api'
 
   const [formData, setFormData] = useState({
     name: '',
