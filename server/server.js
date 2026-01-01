@@ -11,7 +11,9 @@ import userRoutes from './routers/userRoutes.js'
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://my-portfolio-eilp-two.vercel.app"]
+  origin: ["http://localhost:5173",
+    "https://my-portfolio-eilp-two.vercel.app",
+    "https://my-portfolio-vpz5.vercel.app"]
 }));
 app.use(express.json());
 connectDB()
