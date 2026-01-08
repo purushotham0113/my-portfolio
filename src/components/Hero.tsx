@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Mail, } from 'lucide-react';
+import { Github, Mail, Linkedin } from 'lucide-react';
 
 interface HeroProps {
   darkMode: boolean;
@@ -62,8 +62,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
             </h2>
             <p className={`text-lg md:text-xl mb-8 max-w-3xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-700'
               }`}>
-              Passionate about creating innovative solutions and solving complex problems through code.
-              I specialize in full-stack development with expertise in modern web technologies.
+              I’m a full-stack web developer who enjoys building useful applications from scratch. I work across both frontend and backend, focusing on clean interfaces, functional features, and practical problem-solving. I’m continuously improving my skills by shipping projects, exploring new tools, and learning how real-world software is built.
             </p>
           </motion.div>
 
@@ -71,7 +70,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center justify-center gap-6"
+            className="flex items-center justify-center gap-6 mt-14"
           >
             <a
               href="https://github.com/purushotham0113"
@@ -83,6 +82,17 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
                 } shadow-lg`}
             >
               <Github size={24} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/konikanti-purushotham-00573736a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-3 rounded-full transition-colors ${darkMode
+                ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                : 'bg-white hover:bg-gray-100 text-gray-700'
+                } shadow-lg`}
+            >
+              <Linkedin size={24} />
             </a>
             <a
               href="purushothamkonikanti@gmail.com"
