@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Mail, Heart } from 'lucide-react';
+import { Github, Mail, Linkedin, Heart } from 'lucide-react';
 
 interface FooterProps {
   darkMode: boolean;
@@ -64,17 +64,17 @@ const Footer: React.FC<FooterProps> = ({ darkMode }) => {
               >
                 <Github size={20} />
               </a>
-              {/* <a
-                href="https://linkedin.com/in/yourusername"
+              <a
+                href="https://www.linkedin.com/in/konikanti-purushotham-00573736a/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-2 rounded-full transition-colors ${darkMode
                   ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
                   : 'bg-white hover:bg-gray-100 text-gray-700'
                   } shadow-lg`}
-              > */}
-              {/* <Linkedin size={20} />
-            </a> */}
+              >
+                <Linkedin size={20} />
+              </a>
               <a
                 href="mailto:purushothamkonikanti@gmail.com"
                 className={`p-2 rounded-full transition-colors ${darkMode

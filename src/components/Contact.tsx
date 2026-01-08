@@ -106,7 +106,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                       Phone
                     </p>
                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      +91 9014065779
+                      +91 xxxxxxxx78
                     </p>
                   </div>
                 </div>
